@@ -78,7 +78,13 @@ jobs:
         working-directory: ${{ env.WORKING_DIR }}
 
       - name: Test prod
-        run: curl $(terraform output -raw primary_web_endpoint)
+        run: |
+          endpoint=$(terraform output -raw primary_web_endpoint)
+          if [ -z "$endpoint" ]; then
+            echo "No endpoint found. Skipping curl test."
+            exit 1
+          fi
+          curl $endpoint
         working-directory: ${{ env.WORKING_DIR }}
 
       - name: Get Web Endpoint
