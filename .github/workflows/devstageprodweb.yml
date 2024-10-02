@@ -77,6 +77,10 @@ jobs:
         run: terraform workspace select prod || terraform workspace new prod
         working-directory: ${{ env.WORKING_DIR }}
 
+      - name: Terraform output
+        run: terraform output -raw primary_web_endpoint
+        working-directory: ${{ env.WORKING_DIR }}
+
       - name: Test prod
         run: curl -g $(terraform output -raw primary_web_endpoint)
         working-directory: ${{ env.WORKING_DIR }}
