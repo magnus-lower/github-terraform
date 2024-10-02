@@ -78,7 +78,10 @@ jobs:
         working-directory: ${{ env.WORKING_DIR }}
 
       - name: Terraform output
-        run: terraform output -raw primary_web_endpoint
+        run: |
+          echo "Checking output for primary_web_endpoint"
+          terraform output -json
+          terraform output -raw primary_web_endpoint
         working-directory: ${{ env.WORKING_DIR }}
 
       - name: Test prod
