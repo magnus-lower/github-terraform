@@ -32,10 +32,6 @@ jobs:
         run: terraform apply -auto-approve
         working-directory: ${{ env.WORKING_DIR }}
 
-      - name: Terraform refresh
-        run: terraform refresh
-        working-directory: ${{ env.WORKING_DIR }}
-
       - name: Test dev
         run: curl $(terraform output -raw primary_web_endpoint)
         working-directory: ${{ env.WORKING_DIR }}
@@ -57,10 +53,6 @@ jobs:
 
       - name: Terraform apply stage
         run: terraform apply -auto-approve
-        working-directory: ${{ env.WORKING_DIR }}
-
-      - name: Terraform refresh
-        run: terraform refresh
         working-directory: ${{ env.WORKING_DIR }}
 
       - name: Test stage
@@ -87,10 +79,6 @@ jobs:
 
       - name: Terraform apply stage
         run: terraform apply -auto-approve
-        working-directory: ${{ env.WORKING_DIR }}
-
-      - name: Terraform refresh
-        run: terraform refresh
         working-directory: ${{ env.WORKING_DIR }}
 
       - name: Terraform output
