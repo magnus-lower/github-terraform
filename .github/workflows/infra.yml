@@ -6,7 +6,6 @@ on:
     types: [ closed, opened, synchronize, reopened ]
   issue_comment:
     types: [created]
-    if: contains(github.event.comment.body, 'digger')
   workflow_dispatch:
 
 jobs:
@@ -34,7 +33,7 @@ jobs:
           LOCK_PROVIDER: azure
           DIGGER_AZURE_AUTH_METHOD: CONNECTION_STRING
           DIGGER_AZURE_CONNECTION_STRING: ${{ secrets.DIGGER_AZURE_CONNECTION_STRING }}
-          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
-          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-          ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+          ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
